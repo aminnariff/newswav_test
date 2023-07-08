@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:lottie/lottie.dart';
+import 'package:newswav_test/rectangle_animation.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class ExamplePage extends StatefulWidget {
@@ -121,7 +121,18 @@ class _ExamplePageState extends State<ExamplePage> {
             if (mode == RefreshStatus.idle) {
               body = const Text("pull down to refresh");
             } else if (mode == RefreshStatus.refreshing) {
-              body = Lottie.asset('assets/lottie/loading.json');
+              body = const Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Expanded(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(vertical: 2),
+                      child: AnimatedRectangle(),
+                    ),
+                  ),
+                ],
+              );
+              // body = Lottie.asset('assets/lottie/loading.json');
             } else if (mode == RefreshStatus.failed) {
               body = const Text("Refresh Failed!");
             } else if (mode == RefreshStatus.canRefresh) {
